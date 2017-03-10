@@ -1,0 +1,26 @@
+---
+ hosts: all
+ remote-user: {{user}}
+ vars:
+  hadoop-version: 2.7.3
+  hadoop-dir: "/home/{{user}}/hadoop-{{hadoop-version}}"
+ tasks:
+  - name: install programs
+    apt: name={{item}} state=present
+    with_items: 
+      - openssh-server
+      - postgresql-contrib
+      - default-jdk
+      - default-jre
+      
+  - name: extract hadoop folder
+    unarchive: src="hadoop-{{hadoop-version}}" dest="/home/{{user}}/"
+    
+  - name: copy templates over
+    template: src="template/{{item.src}}" dest="{{item.dest}}"
+    with_items:
+      - {{ src: 'core-site.xml.j2' dest: "{{hadoop-dir}}/etc/hadoop/core-site.xml" }}
+      - {{ src: 'hdfs-site.xml.j2' dest: "{{hadoop-dir}}/etc/hadoop/hdfs-site.xml" }}
+      - {{ src: 'yarn-site.xml.j2' dest: "{{hadoop-dir}}/etc/hadoop/yarn-site.xml" }}
+      - {{ src: 'mapred-site.xml.j2' dest: "{{hadoop-dir}}/etc/hadoop/mapred-site.xml" }}
+      - {{ src: 'slaves.j2' dest: "{{hadoop-dir}}/etc/hadoop/slaves" }}
