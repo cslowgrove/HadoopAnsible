@@ -1,5 +1,5 @@
 127.0.0.1       localhost 
  
 {% for host in play_hosts %} 
-{{ hostvars[host]['ansible_inventory'] }}  {{ hostvars[host]['hostname'] }} 
+{{ host] }}  {{ hostvars[host]['hostname'] }} 
 {% endfor %}
