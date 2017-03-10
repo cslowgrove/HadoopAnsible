@@ -1,3 +1,0 @@
-{% for item in groups['slaves'] %}
-{{ hostvars[item]['hostname'] }}
-{% endfor %}

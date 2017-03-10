@@ -16,8 +16,11 @@
       - default-jdk
       - default-jre
       
-  - name: extract hadoop folder
-    unarchive: src="templates/hadoop-{{hadoop_version}}.tar.gz" dest="/home/{{user}}/"
+  - name: download and extract hadoop folder
+    unarchive: 
+      src: "http://mirrors.ukfast.co.uk/sites/ftp.apache.org/hadoop/common/hadoop-{{hadoop_version}}/hadoop-{{hadoop_version}}-src.tar.gz"
+      dest: "/home/{{user}}/"
+      remote_src: True
     
   - name: copy templates over
     template: src="templates/{{item.src}}" dest="{{item.dest}}"
