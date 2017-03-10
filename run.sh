@@ -1,0 +1,1 @@
+ansible-playbook -i inventory main.yml --ask-sudo-pass

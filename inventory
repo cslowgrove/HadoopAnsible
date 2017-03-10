@@ -1,0 +1,7 @@
+[master]
+192.168.176.110 hostname=master user=charlie
+
+[slaves]
+192.168.176.111 hostname=slave1 user=charlie
+192.168.176.112 hostname=slave2 user=charlie
+192.168.176.113 hostname=slave3 user=charlie
