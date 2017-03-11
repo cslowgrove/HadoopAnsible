@@ -20,7 +20,7 @@
       
   - name: download and extract hadoop folder
     unarchive: 
-      src: "http://mirrors.ukfast.co.uk/sites/ftp.apache.org/hadoop/common/hadoop-{{hadoop_version}}/hadoop-{{hadoop_version}}-src.tar.gz"
+      src: "http://mirrors.ukfast.co.uk/sites/ftp.apache.org/hadoop/common/hadoop-{{hadoop_version}}/hadoop-{{hadoop_version}}.tar.gz"
       dest: "/home/{{user}}/"
       remote_src: True
       
