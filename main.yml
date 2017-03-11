@@ -76,3 +76,4 @@
     shell: reboot
     become: yes
     when: inventory_hostname in groups['slaves']
+    ignore_errors: true
