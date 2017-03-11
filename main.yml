@@ -44,7 +44,6 @@
   - name: copy templates over
     template: src="templates/{{item.src}}" dest="{{item.dest}}"
     become: yes
-    mode: 0777
     with_items:
       - { src: core-site.xml.j2, dest: "{{hadoop_dir}}/etc/hadoop/core-site.xml" }
       - { src: hdfs-site.xml.j2, dest: "{{hadoop_dir}}/etc/hadoop/hdfs-site.xml" }
