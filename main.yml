@@ -30,16 +30,19 @@
       src: "http://mirrors.ukfast.co.uk/sites/ftp.apache.org/hadoop/common/hadoop-{{hadoop_version}}/hadoop-{{hadoop_version}}.tar.gz"
       dest: "/home/{{user}}/"
       remote_src: True
+      mode: 0777
       
   - name: download and extract hive folder
     unarchive: 
       src: "http://apache.mirror.anlx.net/hive/hive-{{hive_version}}/apache-hive-{{hive_version}}-bin.tar.gz"
       dest: "{{hadoop_dir}}"
       remote_src: True
+      mode: 0777
     
   - name: copy templates over
     template: src="templates/{{item.src}}" dest="{{item.dest}}"
     become: yes
+    mode: 0777
     with_items:
       - { src: core-site.xml.j2, dest: "{{hadoop_dir}}/etc/hadoop/core-site.xml" }
       - { src: hdfs-site.xml.j2, dest: "{{hadoop_dir}}/etc/hadoop/hdfs-site.xml" }
