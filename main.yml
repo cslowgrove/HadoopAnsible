@@ -31,6 +31,7 @@
       dest: "/home/{{user}}/"
       remote_src: True
       mode: 0777
+      owner: "{{user}}"
       
   - name: download and extract hive folder
     unarchive: 
@@ -38,11 +39,13 @@
       dest: "{{hadoop_dir}}"
       remote_src: True
       mode: 0777
+      owner: "{{user}}"
     
   - name: copy templates over
     template: src="templates/{{item.src}}" dest="{{item.dest}}"
     become: yes
     mode: 0777
+    owner: "{{user}}"
     with_items:
       - { src: core-site.xml.j2, dest: "{{hadoop_dir}}/etc/hadoop/core-site.xml" }
       - { src: hdfs-site.xml.j2, dest: "{{hadoop_dir}}/etc/hadoop/hdfs-site.xml" }
