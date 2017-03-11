@@ -57,3 +57,4 @@
   - name: reboot everything
     shell: reboot
     become: yes
+    when: inventory_hostname in groups['slaves']
