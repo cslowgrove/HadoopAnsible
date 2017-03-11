@@ -24,20 +24,32 @@
                 regexp="JAVA_HOME={{java_home}}"
                 line="JAVA_HOME={{java_home}}"
     become: yes
+    
+  - name: download hadoop locally
+    local_action:
+      get_url
+      url="http://mirrors.ukfast.co.uk/sites/ftp.apache.org/hadoop/common/hadoop-{{hadoop_version}}/hadoop-{{hadoop_version}}.tar.gz"
+      dest="/home/{{user}}/"
+      
+  - name: download hive locally
+    local_action:
+      get_url
+      url="http://apache.mirror.anlx.net/hive/hive-{{hive_version}}/apache-hive-{{hive_version}}-bin.tar.gz"
+      dest="/home/{{user}}/"
       
   - name: download and extract hadoop folder
     unarchive: 
-      src: "http://mirrors.ukfast.co.uk/sites/ftp.apache.org/hadoop/common/hadoop-{{hadoop_version}}/hadoop-{{hadoop_version}}.tar.gz"
+      src: "/home/{{user}}/hadoop-{{hadoop_version}}.tar.gz"
       dest: "/home/{{user}}/"
-      remote_src: True
+      remote_src: False
       mode: 0777
       owner: "{{user}}"
       
   - name: download and extract hive folder
     unarchive: 
-      src: "http://apache.mirror.anlx.net/hive/hive-{{hive_version}}/apache-hive-{{hive_version}}-bin.tar.gz"
+      src: "/home/{{user}}/apache-hive-{{hive_version}}-bin.tar.gz"
       dest: "{{hadoop_dir}}"
-      remote_src: True
+      remote_src: False
       mode: 0777
       owner: "{{user}}"
     
