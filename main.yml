@@ -6,6 +6,7 @@
     hive_version: 2.1.1
     hadoop_dir: "/home/{{user}}/hadoop-{{hadoop_version}}"
     hive_dir: "{{hadoop_dir}}/apache-hive-{{hive_version}}-bin"
+    java_home: "/usr/lib/jvm/default-java"
 
   tasks:
  # - debug: var=hostvars[]['hostname']
@@ -17,6 +18,10 @@
       - postgresql-contrib
       - default-jdk
       - default-jre
+      
+  - name: add JAVA_HOME
+    lineinfile: path=/etc/environment regexp="JAVA_HOME={{java_home}}" line="JAVA_HOME={{java_home}}"
+    become: yes
       
   - name: download and extract hadoop folder
     unarchive: 
