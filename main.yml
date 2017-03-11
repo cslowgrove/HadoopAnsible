@@ -54,6 +54,9 @@
       - { src: hive-env.sh.j2, dest: "{{hive_dir}}/conf/hive-env.sh" }
       - { src: hive-site.xml.j2, dest: "{{hive_dir}}/conf/hive-site.xml" }
       
+  - name: change hostname
+    hostname: name="{{hostname}}"
+      
   - name: reboot everything
     shell: reboot
     become: yes
