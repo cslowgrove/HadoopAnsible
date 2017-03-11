@@ -26,12 +26,14 @@
     become: yes
     
   - name: download hadoop locally
+    run_once: true
     local_action:
       get_url
       url="http://mirrors.ukfast.co.uk/sites/ftp.apache.org/hadoop/common/hadoop-{{hadoop_version}}/hadoop-{{hadoop_version}}.tar.gz"
       dest="/home/{{user}}/"
       
   - name: download hive locally
+    run_once: true
     local_action:
       get_url
       url="http://apache.mirror.anlx.net/hive/hive-{{hive_version}}/apache-hive-{{hive_version}}-bin.tar.gz"
