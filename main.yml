@@ -25,18 +25,6 @@
                 line="JAVA_HOME={{java_home}}"
     become: yes
     
-  - name: add HIVE_HOME
-    lineinfile: dest=/etc/environment
-                regexp="HIVE_HOME={{hive_home}}"
-                line="HIVE_HOME={{hive_home}}"
-    become: yes
-    
-  - name: add PATH
-    lineinfile: dest=/etc/environment
-                regexp="PATH=$PATH:$HIVE_HOME/bin"
-                line="PATH=$PATH:$HIVE_HOME/bin"
-    become: yes
-    
   - name: download hadoop locally
     run_once: true
     local_action:
