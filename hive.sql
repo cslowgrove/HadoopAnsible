@@ -74,4 +74,5 @@ FROM dailyTemperatures;
 
 -- WBAN|startdate|enddate|Highest_Temperature
 --SELECT WBAN,startdate,enddate,MAX(Moving_Average) as Highest_Temperature from moving_average_table;
-select top 1 * from moving_average_table order by Moving_Average desc
+--select top 1 * from moving_average_table order by Moving_Average desc
+select * from moving_average_table order by Moving_Average desc limit 1
